@@ -1,0 +1,52 @@
+application:
+  name: tweety-streamer
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+    check-location: true
+    locations: classpath:db/migration/h2
+    sql-migration-prefix: V
+    url: jdbc:h2:file:./target/h2db/db/tweety-streamer;DB_CLOSE_DELAY=-1
+    user: nacho
+    password: nacho
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:file:./target/h2db/db/tweety-streamer;DB_CLOSE_DELAY=-1
+    username: nacho
+    password: nacho
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  jpa:
+    show-sql: true
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+management:
+  health:
+    binders:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+server:
+  servlet:
+    context-path: /tweety-streamer/api/v0
+  port: 8082
+
+client:
+  twitter:
+    baseurl: https://api.twitter.com
+    key: drPcUMNPDrnApSUSA4aRg3A9a
+    consumer_secret: VEINVQm8aOTauGFYQ5ZDoToPiUmXG66N3JbCzmWMMIl2Qj2qyz
+    encoded_key_secret: Basic ZHJQY1VNTlBEcm5BcFNVU0E0YVJnM0E5YTpWRUlOVlFtOGFPVGF1R0ZZUTVaRG9Ub1BpVW1YRzY2TjNKYkN6bVdNTUlsMlFqMnF5eg==
