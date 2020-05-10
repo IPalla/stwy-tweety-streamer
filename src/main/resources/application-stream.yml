@@ -1,0 +1,16 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
+
+spring.cloud.stream.bindings:
+  tweety-streamer-output:
+    binder: rabbit
+    content-type: application/json
+    destination: tweety-streamer-output-exchange
+spring.cloud.stream.rabbit.bindings.tweety-streamer-output:
+  producer:
+    routingKeyExpression: '''streamInTweets'''
+    transacted: true

@@ -1,6 +1,9 @@
 application:
   name: tweety-streamer
 spring:
+  profiles:
+    include:
+      - stream
   h2:
     console:
       enabled: true
